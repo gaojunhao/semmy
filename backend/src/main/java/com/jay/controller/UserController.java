@@ -50,5 +50,17 @@ public class UserController {
         return name+"-{name:jay,context:hi,你好}"+users;
     }
 
+    @RequestMapping(value = "/set", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String setHi(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String addr = request.getParameter("address");
+        service.setUser(id, name, addr);
+        List<User> users = service.getAllUser();
+        logger.info("{name:jay,context:set,你好}");
+        return "-{name:jay,context:hi,你好}"+ users;
+    }
+
 
 }

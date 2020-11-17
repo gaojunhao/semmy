@@ -7,5 +7,8 @@
     <select id="getAllUsers" resultType="User">
         select id,`name`,address from user
     </select>
+    <select id="setUser">
+        insert into user(id, name, address) values(#{id}, #{name}, #{addr})
+    </select>
 
 </mapper>

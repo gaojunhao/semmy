@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUser();
+    void setUser(int id, String name, String addr);
 }
