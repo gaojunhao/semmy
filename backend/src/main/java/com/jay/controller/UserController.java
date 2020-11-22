@@ -4,7 +4,9 @@ import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -47,7 +50,7 @@ public class UserController {
         String name = request.getParameter("v");
         List<User> users = service.getAllUser();
         logger.info("{name:jay,context:hi,你好}");
-        return name+"-{name:jay,context:hi,你好}"+users;
+        return users.toString();
     }
 
     @RequestMapping(value = "/set", produces = "text/html;charset=UTF-8")
@@ -56,6 +59,19 @@ public class UserController {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String addr = request.getParameter("address");
+        service.setUser(id, name, addr);
+        List<User> users = service.getAllUser();
+        logger.info("{name:jay,context:set,你好}");
+        return "-{name:jay,context:hi,你好}"+ users;
+    }
+
+    @RequestMapping(value = "/setjson", method = {RequestMethod.POST})
+    @ResponseBody
+    public String setjsonHi(@RequestBody Map map, HttpServletResponse response) {
+        String id_str = (String) map.get("id");
+        int id = Integer.parseInt(id_str);
+        String name = (String) map.get("name");
+        String addr = (String) map.get("address");
         service.setUser(id, name, addr);
         List<User> users = service.getAllUser();
         logger.info("{name:jay,context:set,你好}");
