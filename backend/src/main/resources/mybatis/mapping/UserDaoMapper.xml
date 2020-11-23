@@ -10,5 +10,8 @@
     <select id="setUser">
         insert into user(id, name, address) values(#{id}, #{name}, #{addr})
     </select>
+    <select id="setHouses">
+        insert into houses(phone, ads, maxg, mtype, rent, img, img_count) values(#{phone}, #{ads}, #{maxg}, #{mtype}, #{rent}, #{img}, #{img_count})
+    </select>
 
 </mapper>

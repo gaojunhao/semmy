@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
     public void setUser(int id, String name, String addr) {
         userDao.setUser(id, name, addr);
     }
+
+    @Override
+    public void setHouses(String phone, String ads, int maxg, String mtype, int rent, String img, int img_count) {
+        userDao.setHouses(phone, ads, maxg, mtype, rent, img, img_count);
+    }
 }

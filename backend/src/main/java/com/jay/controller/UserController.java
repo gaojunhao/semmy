@@ -78,5 +78,24 @@ public class UserController {
         return "-{name:jay,context:hi,你好}"+ users;
     }
 
+    @RequestMapping(value = "/sethouses", method = {RequestMethod.POST})
+    @ResponseBody
+    public String sethouses(@RequestBody Map map, HttpServletResponse response) {
+        String phone = (String) map.get("phone");
+        String ads = (String) map.get("ads");
+        String maxg_str = (String) map.get("maxg");
+        int maxg = Integer.parseInt(maxg_str);
+        String mtype = (String) map.get("mtype");
+        String rent_str = (String) map.get("rent");
+        int rent = Integer.parseInt(rent_str);
+        String img = (String) map.get("img");
+        String img_count_str = (String) map.get("img_count");
+        int img_count = Integer.parseInt(img_count_str);
+        service.setHouses(phone, ads, maxg, mtype, rent, img, img_count);
+        List<User> users = service.getAllUser();
+        logger.info("{name:jay,context:set,你好}");
+        return "-{name:jay,context:hi,你好}"+ users;
+    }
+
 
 }
