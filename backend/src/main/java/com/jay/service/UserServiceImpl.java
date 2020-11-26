@@ -1,6 +1,7 @@
 package com.jay.service;
 
 import com.jay.dao.UserDao;
+import com.jay.entities.House;
 import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.springframework.context.annotation.Scope;
@@ -27,7 +28,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void setHouses(String phone, String ads, int maxg, String mtype, int rent, String img, int img_count) {
-        userDao.setHouses(phone, ads, maxg, mtype, rent, img, img_count);
+    public void setHouses(House house) {
+        userDao.setHouses(house);
+    }
+
+    @Override
+    public List<House> getAllHouses(int itemcnt_start, int itemcnt_end) {
+        return userDao.getAllHouses(itemcnt_start, itemcnt_end);
     }
 }

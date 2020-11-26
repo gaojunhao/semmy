@@ -10,8 +10,11 @@
     <select id="setUser">
         insert into user(id, name, address) values(#{id}, #{name}, #{addr})
     </select>
-    <select id="setHouses">
-        insert into houses(phone, ads, maxg, mtype, rent, img, img_count) values(#{phone}, #{ads}, #{maxg}, #{mtype}, #{rent}, #{img}, #{img_count})
+    <select id="setHouses" parameterType="com.jay.entities.House">
+        insert into houses(phone, ads, maxg, `type`, rent, img, img_count, status) values(#{phone}, #{ads}, #{maxg}, #{type}, #{rent}, #{img}, #{img_count}, #{status})
+    </select>
+    <select id="getAllHouses" resultType="House">
+        select phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
 
 </mapper>

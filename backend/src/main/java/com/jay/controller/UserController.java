@@ -1,5 +1,6 @@
 package com.jay.controller;
 
+import com.jay.entities.House;
 import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.apache.log4j.Logger;
@@ -80,21 +81,20 @@ public class UserController {
 
     @RequestMapping(value = "/sethouses", method = {RequestMethod.POST})
     @ResponseBody
-    public String sethouses(@RequestBody Map map, HttpServletResponse response) {
-        String phone = (String) map.get("phone");
-        String ads = (String) map.get("ads");
-        String maxg_str = (String) map.get("maxg");
-        int maxg = Integer.parseInt(maxg_str);
-        String mtype = (String) map.get("mtype");
-        String rent_str = (String) map.get("rent");
-        int rent = Integer.parseInt(rent_str);
-        String img = (String) map.get("img");
-        String img_count_str = (String) map.get("img_count");
-        int img_count = Integer.parseInt(img_count_str);
-        service.setHouses(phone, ads, maxg, mtype, rent, img, img_count);
-        List<User> users = service.getAllUser();
-        logger.info("{name:jay,context:set,你好}");
-        return "-{name:jay,context:hi,你好}"+ users;
+    public String sethouses(@RequestBody House house, HttpServletResponse response) {
+        logger.info(house.getPhone());
+        logger.info(house.getImg());
+        service.setHouses(house);
+        return " set house success";
+    }
+
+    @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getAllhouses(HttpServletRequest request, HttpServletResponse response) {
+        int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
+        int itemcnt_end = 5;
+        List<House> houses = service.getAllHouses(itemcnt_start, itemcnt_end);
+        return houses.toString();
     }
 
 
