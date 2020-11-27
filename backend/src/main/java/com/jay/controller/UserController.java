@@ -131,7 +131,15 @@ public class UserController {
         String phone = request.getParameter("phone");
         String pswd = request.getParameter("pswd");
         String ident = request.getParameter("ident");
-        String name = service.login(phone, pswd, ident);
+        String table = "";
+        String host_str = "host";
+        if (ident.equals(host_str))
+            table = "owner";
+        else
+            table = "houser";
+        logger.info("{name:jay,context:set,你好}");
+        logger.info(table);
+        String name = service.login(phone, pswd, table);
         logger.info("{name:jay,context:set,你好}");
         return name;
     }
