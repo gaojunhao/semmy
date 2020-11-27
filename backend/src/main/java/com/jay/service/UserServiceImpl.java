@@ -3,7 +3,6 @@ package com.jay.service;
 import com.jay.dao.UserDao;
 import com.jay.entities.House;
 import com.jay.entities.User;
-import com.jay.service.UserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +29,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setHouses(House house) {
         userDao.setHouses(house);
+    }
+
+    @Override
+    public void registerhouser(String op, String phone, String name, String ads, String pswd, String sex, String uid) { userDao.registerhouser(op, phone, name, ads, pswd, sex, uid);}
+
+    @Override
+    public void registerowner(String op, String phone, String name, String ads, String pswd) { userDao.registerowner(op, phone, name, ads, pswd);}
+
+    @Override
+    public String login(String phone, String pswd, String ident) {
+        return userDao.login(phone, pswd, ident);
     }
 
     @Override

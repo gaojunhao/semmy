@@ -97,5 +97,44 @@ public class UserController {
         return houses.toString();
     }
 
+    @RequestMapping(value = "/registerhouser", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String registerhouser(HttpServletRequest request, HttpServletResponse response) {
+        String op = request.getParameter("op");
+        String phone = request.getParameter("phone");
+        String name = request.getParameter("name");
+        String ads = request.getParameter("ads");
+        String pswd = request.getParameter("pswd");
+        String sex = request.getParameter("sex");
+        String uid = request.getParameter("uid");
+        service.registerhouser(op, phone, name, ads, pswd, sex, uid);
+        logger.info("{name:jay,context:set,你好}");
+        return "-{name:jay,context:hi,你好}";
+    }
+
+    @RequestMapping(value = "/registerowner", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String registerowner(HttpServletRequest request, HttpServletResponse response) {
+        String op = request.getParameter("op");
+        String phone = request.getParameter("phone");
+        String name = request.getParameter("name");
+        String ads = request.getParameter("ads");
+        String pswd = request.getParameter("pswd");
+        service.registerowner(op, phone, name, ads, pswd);
+        logger.info("{name:jay,context:set,你好}");
+        return "-{name:jay,context:hi,你好}";
+    }
+
+    @RequestMapping(value = "/login", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String login(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        String pswd = request.getParameter("pswd");
+        String ident = request.getParameter("ident");
+        String name = service.login(phone, pswd, ident);
+        logger.info("{name:jay,context:set,你好}");
+        return name;
+    }
+
 
 }

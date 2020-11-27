@@ -12,4 +12,9 @@ public interface UserService {
     List<House> getAllHouses(int itemcnt_start, int itemcnt_end);
 
     void setHouses(House house);
+
+    void registerhouser(String op, String phone, String name, String ads, String pswd, String sex, String uid);
+    void registerowner(String op, String phone, String name, String ads, String pswd);
+
+    String login(String phone, String pswd, String ident);
 }

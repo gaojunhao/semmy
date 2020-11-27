@@ -16,5 +16,10 @@
     <select id="getAllHouses" resultType="House">
         select phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
-
+    <select id="registerhouser">
+    insert into houser(op, phone, name, ads, pswd, sex, uid) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid})
+    </select>
+    <select id="registerowner">
+    insert into owner(op, phone, name, ads, pswd) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd})
+    </select>
 </mapper>
