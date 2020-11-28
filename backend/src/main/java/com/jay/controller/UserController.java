@@ -1,6 +1,7 @@
 package com.jay.controller;
 
 import com.jay.entities.House;
+import com.jay.entities.Logininfo;
 import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.apache.log4j.Logger;
@@ -107,7 +108,8 @@ public class UserController {
         String pswd = request.getParameter("pswd");
         String sex = request.getParameter("sex");
         String uid = request.getParameter("uid");
-        service.registerhouser(op, phone, name, ads, pswd, sex, uid);
+        String avasrc = request.getParameter("avasrc");
+        service.registerhouser(op, phone, name, ads, pswd, sex, uid, avasrc);
         logger.info("{name:jay,context:set,你好}");
         return "-{name:jay,context:hi,你好}";
     }
@@ -120,7 +122,8 @@ public class UserController {
         String name = request.getParameter("name");
         String ads = request.getParameter("ads");
         String pswd = request.getParameter("pswd");
-        service.registerowner(op, phone, name, ads, pswd);
+        String avasrc = request.getParameter("avasrc");
+        service.registerowner(op, phone, name, ads, pswd, avasrc);
         logger.info("{name:jay,context:set,你好}");
         return "-{name:jay,context:hi,你好}";
     }
@@ -132,16 +135,19 @@ public class UserController {
         String pswd = request.getParameter("pswd");
         String ident = request.getParameter("ident");
         String table = "";
-        String host_str = "host";
+        String host_str = "2";
         if (ident.equals(host_str))
             table = "owner";
         else
             table = "houser";
-        logger.info("{name:jay,context:set,你好}");
         logger.info(table);
-        String name = service.login(phone, pswd, table);
-        logger.info("{name:jay,context:set,你好}");
-        return name;
+        String rtval = "-2";
+        Logininfo logininfo = service.login(phone, pswd, table);
+        if (logininfo == null)
+            rtval = "-1 ";
+        else
+            rtval = "1 ";
+        return rtval + logininfo;
     }
 
 

@@ -1,6 +1,7 @@
 package com.jay.service;
 
 import com.jay.entities.House;
+import com.jay.entities.Logininfo;
 import com.jay.entities.User;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public interface UserService {
 
     void setHouses(House house);
 
-    void registerhouser(String op, String phone, String name, String ads, String pswd, String sex, String uid);
-    void registerowner(String op, String phone, String name, String ads, String pswd);
+    void registerhouser(String op, String phone, String name, String ads, String pswd, String sex, String uid, String avasrc);
+    void registerowner(String op, String phone, String name, String ads, String pswd, String avasrc);
 
-    String login(String phone, String pswd, String ident);
+    Logininfo login(String phone, String pswd, String ident);
 }

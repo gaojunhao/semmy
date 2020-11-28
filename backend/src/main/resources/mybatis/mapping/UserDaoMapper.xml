@@ -17,13 +17,13 @@
         select phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
     <select id="registerhouser">
-    insert into houser(op, phone, name, ads, pswd, sex, uid) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid})
+    insert into houser(op, phone, name, ads, pswd, sex, uid, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid}, #{avasrc})
     </select>
     <select id="registerowner">
-    insert into owner(op, phone, name, ads, pswd) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd})
+    insert into owner(op, phone, name, ads, pswd, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{avasrc})
     </select>
-    <select id="login" resultType="java.lang.String">
-        select `name` from ${ident} where phone = #{phone} and pswd = #{pswd}
+    <select id="login" resultType="Logininfo">
+        select `name`, avasrc from ${ident} where phone = #{phone} and pswd = #{pswd}
     </select>
 
 </mapper>
