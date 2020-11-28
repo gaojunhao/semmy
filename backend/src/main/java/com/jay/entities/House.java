@@ -1,6 +1,7 @@
 package com.jay.entities;
 
 public class House {
+    private Integer id;
     private String phone;
     private String ads;
     private Integer maxg;
@@ -9,10 +10,12 @@ public class House {
     private String img;
     private Integer img_count;
     private String status;
+    private String avasrc;
 
     public House(){}
 
-    public House(String phone, String ads, Integer maxg, String type, Integer rent, String img, Integer img_count, String status) {
+    public House(Integer id, String phone, String ads, Integer maxg, String type, Integer rent, String img, Integer img_count, String status, String avasrc) {
+        this.id = id;
         this.phone = phone;
         this.ads = ads;
         this.maxg = maxg;
@@ -21,6 +24,15 @@ public class House {
         this.img = img;
         this.img_count = img_count;
         this.status = status;
+        this.avasrc = avasrc;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPhone() {
@@ -87,10 +99,19 @@ public class House {
         this.status = status;
     }
 
+    public String getAvasrc() {
+        return avasrc;
+    }
+
+    public void setAvasrc(String status) {
+        this.avasrc = avasrc;
+    }
+
     @Override
     public String toString() {
         return "{" +
-                "\"phone\":" + phone +
+                "\"id\":" + id +
+                ", \"phone\":\"" + phone + '\"' +
                 ", \"ads\":\"" + ads + '\"' +
                 ", \"maxg\":\"" + maxg + '\"' +
                 ", \"type\":\"" + type + '\"' +
@@ -98,6 +119,7 @@ public class House {
                 ", \"img\":\"" + img + '\"' +
                 ", \"img_count\":\"" + img_count + '\"' +
                 ", \"status\":\"" + status + '\"' +
+                ", \"avasrc\":\"" + avasrc + '\"' +
                 '}';
     }
 }

@@ -18,4 +18,6 @@ public interface UserService {
     void registerowner(String op, String phone, String name, String ads, String pswd, String avasrc);
 
     Logininfo login(String phone, String pswd, String ident);
+
+    House getoneHouse(int id);
 }

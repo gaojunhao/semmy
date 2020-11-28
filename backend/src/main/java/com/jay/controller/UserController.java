@@ -98,6 +98,14 @@ public class UserController {
         return houses.toString();
     }
 
+    @RequestMapping(value = "/getonehouse", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getonehouse(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        House house = service.getoneHouse(id);
+        return house.toString();
+    }
+
     @RequestMapping(value = "/registerhouser", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String registerhouser(HttpServletRequest request, HttpServletResponse response) {

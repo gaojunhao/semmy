@@ -18,4 +18,6 @@ public interface UserDao {
     void registerowner(@Param("op") String op, @Param("phone") String phone, @Param("name") String name, @Param("ads") String ads, @Param("pswd") String pswd, @Param("avasrc") String avasrc);
 
     Logininfo login(@Param("phone") String phone, @Param("pswd") String pswd, @Param("ident") String ident);
+
+    House getonehouse(@Param("id") int id);
 }

@@ -11,10 +11,10 @@
         insert into user(id, name, address) values(#{id}, #{name}, #{addr})
     </select>
     <select id="setHouses" parameterType="com.jay.entities.House">
-        insert into houses(phone, ads, maxg, `type`, rent, img, img_count, status) values(#{phone}, #{ads}, #{maxg}, #{type}, #{rent}, #{img}, #{img_count}, #{status})
+        insert into houses(phone, ads, maxg, `type`, rent, img, img_count, status, avasrc) values(#{phone}, #{ads}, #{maxg}, #{type}, #{rent}, #{img}, #{img_count}, #{status}, #{avasrc})
     </select>
     <select id="getAllHouses" resultType="House">
-        select phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
+        select id, phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
     <select id="registerhouser">
     insert into houser(op, phone, name, ads, pswd, sex, uid, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid}, #{avasrc})
@@ -24,6 +24,9 @@
     </select>
     <select id="login" resultType="Logininfo">
         select `name`, avasrc from ${ident} where phone = #{phone} and pswd = #{pswd}
+    </select>
+    <select id="getonehouse" resultType="House">
+        select id, phone, ads, maxg, `type`, rent, img, img_count, status from houses where id = #{id}
     </select>
 
 </mapper>
