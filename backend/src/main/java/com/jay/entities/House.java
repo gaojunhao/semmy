@@ -103,7 +103,7 @@ public class House {
         return avasrc;
     }
 
-    public void setAvasrc(String status) {
+    public void setAvasrc(String avasrc) {
         this.avasrc = avasrc;
     }
 

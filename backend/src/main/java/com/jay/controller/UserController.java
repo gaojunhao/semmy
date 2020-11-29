@@ -84,7 +84,7 @@ public class UserController {
     @ResponseBody
     public String sethouses(@RequestBody House house, HttpServletResponse response) {
         logger.info(house.getPhone());
-        logger.info(house.getImg());
+        logger.info(house.getAvasrc());
         service.setHouses(house);
         return " set house success";
     }
