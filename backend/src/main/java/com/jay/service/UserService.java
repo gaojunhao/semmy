@@ -2,6 +2,7 @@ package com.jay.service;
 
 import com.jay.entities.House;
 import com.jay.entities.Logininfo;
+import com.jay.entities.Tip;
 import com.jay.entities.User;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface UserService {
     Logininfo login(String phone, String pswd, String ident);
 
     House getoneHouse(int id);
+
+    List<Tip> getAllTips(int itemcnt_start, int itemcnt_end);
+
+    Tip getOneTip(int id);
 }

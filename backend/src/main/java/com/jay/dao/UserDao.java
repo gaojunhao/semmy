@@ -2,6 +2,7 @@ package com.jay.dao;
 
 import com.jay.entities.House;
 import com.jay.entities.Logininfo;
+import com.jay.entities.Tip;
 import com.jay.entities.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,4 +21,8 @@ public interface UserDao {
     Logininfo login(@Param("phone") String phone, @Param("pswd") String pswd, @Param("ident") String ident);
 
     House getonehouse(@Param("id") int id);
+
+    List<Tip> getAllTips(@Param("itemcnt_start") int itemcnt_start, @Param("itemcnt_end") int itemcnt_end);
+
+    Tip getOneTip(@Param("id") int id);
 }

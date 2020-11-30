@@ -2,6 +2,7 @@ package com.jay.controller;
 
 import com.jay.entities.House;
 import com.jay.entities.Logininfo;
+import com.jay.entities.Tip;
 import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.apache.log4j.Logger;
@@ -156,6 +157,23 @@ public class UserController {
         else
             rtval = "1 ";
         return rtval + logininfo;
+    }
+
+    @RequestMapping(value = "/getAllTips", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getAllTips(HttpServletRequest request, HttpServletResponse response) {
+        int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
+        int itemcnt_end = 10;
+        List<Tip> tips = service.getAllTips(itemcnt_start, itemcnt_end);
+        return tips.toString();
+    }
+
+    @RequestMapping(value = "/getOneTip", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getOneTip(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Tip tip = service.getOneTip(id);
+        return tip.toString();
     }
 
 
