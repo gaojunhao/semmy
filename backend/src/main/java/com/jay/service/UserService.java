@@ -25,4 +25,6 @@ public interface UserService {
     List<Tip> getAllTips(int itemcnt_start, int itemcnt_end);
 
     Tip getOneTip(int id);
+
+    void publish(Tip tip);
 }

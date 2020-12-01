@@ -60,6 +60,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void publish(Tip tip) {
+        userDao.publish(tip);
+    }
+
+    @Override
     public List<House> getAllHouses(int itemcnt_start, int itemcnt_end) {
         return userDao.getAllHouses(itemcnt_start, itemcnt_end);
     }

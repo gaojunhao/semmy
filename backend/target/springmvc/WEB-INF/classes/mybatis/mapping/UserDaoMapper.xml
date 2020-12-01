@@ -34,5 +34,8 @@
     <select id="getOneTip" resultType="Tip">
         select id, phone, text, `date`, `name`, icon from tips where id = #{id}
     </select>
+    <select id="publish" parameterType="com.jay.entities.Tip">
+        insert into tips(phone, text, `date`, `name`, icon) values(#{phone}, #{text}, #{date}, #{name}, #{icon})
+    </select>
 
 </mapper>

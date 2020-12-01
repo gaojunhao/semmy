@@ -25,4 +25,6 @@ public interface UserDao {
     List<Tip> getAllTips(@Param("itemcnt_start") int itemcnt_start, @Param("itemcnt_end") int itemcnt_end);
 
     Tip getOneTip(@Param("id") int id);
+
+    void publish(Tip tip);
 }

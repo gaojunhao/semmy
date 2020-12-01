@@ -176,5 +176,14 @@ public class UserController {
         return tip.toString();
     }
 
+    @RequestMapping(value = "/publish", method = {RequestMethod.POST})
+    @ResponseBody
+    public String publish(@RequestBody Tip tip, HttpServletResponse response) {
+        //logger.info(house.getPhone());
+        //logger.info(house.getAvasrc());
+        service.publish(tip);
+        return " publish tip success";
+    }
+
 
 }
