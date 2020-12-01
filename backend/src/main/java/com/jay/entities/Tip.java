@@ -6,15 +6,17 @@ public class Tip {
     private String text;
     private String date;
     private String name;
+    private String icon;
 
     public Tip(){}
 
-    public Tip(Integer id, String phone, String text, String date, String name) {
+    public Tip(Integer id, String phone, String text, String date, String name, String icon) {
         this.id = id;
         this.phone = phone;
         this.text = text;
         this.date = date;
         this.name = name;
+        this.icon = icon;
     }
 
     public Integer getId() {
@@ -57,6 +59,14 @@ public class Tip {
         this.name = name;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -65,6 +75,7 @@ public class Tip {
                 ", \"text\":\"" + text + '\"' +
                 ", \"date\":\"" + date + '\"' +
                 ", \"name\":\"" + name + '\"' +
+                ", \"icon\":\"" + icon + '\"' +
                 '}';
     }
 }

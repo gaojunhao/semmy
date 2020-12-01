@@ -29,10 +29,10 @@
         select id, phone, ads, maxg, `type`, rent, img, img_count, status, avasrc from houses where id = #{id}
     </select>
     <select id="getAllTips" resultType="Tip">
-        select id, phone, text, `date`, `name` from tips limit #{itemcnt_start},#{itemcnt_end}
+        select id, phone, text, `date`, `name`, icon from tips limit #{itemcnt_start},#{itemcnt_end}
     </select>
     <select id="getOneTip" resultType="Tip">
-        select id, phone, text, `date`, `name` from tips where id = #{id}
+        select id, phone, text, `date`, `name`, icon from tips where id = #{id}
     </select>
 
 </mapper>
