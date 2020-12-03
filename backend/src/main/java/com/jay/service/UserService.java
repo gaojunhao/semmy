@@ -31,4 +31,6 @@ public interface UserService {
     void updateHouse(House house);
 
     void deleteHouse(int id, String phone);
+
+    void delOneTip(int id, String phone);
 }

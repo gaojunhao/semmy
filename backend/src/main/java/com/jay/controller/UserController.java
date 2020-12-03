@@ -196,11 +196,23 @@ public class UserController {
 
     @RequestMapping(value = "/deletehouse", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public int deletehouse(HttpServletRequest request, HttpServletResponse response) {
+    public String deletehouse(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String phone = request.getParameter("phone");
+        logger.info("deletehouse...");
+        logger.info(id);
+        logger.info(phone);
         service.deleteHouse(id, phone);
-        return 0;
+        return "0";
+    }
+
+    @RequestMapping(value = "/delOneTip", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String delOneTip(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String phone = request.getParameter("phone");
+        service.delOneTip(id, phone);
+        return "0";
     }
 
 }

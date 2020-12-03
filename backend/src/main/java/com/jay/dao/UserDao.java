@@ -31,4 +31,6 @@ public interface UserDao {
     void updateHouse(House house);
 
     void deleteHouse(@Param("id") int id, @Param("phone") String phone);
+
+    void delOnetip(@Param("id") int id, @Param("phone") String phone);
 }
