@@ -37,5 +37,11 @@
     <select id="publish" parameterType="com.jay.entities.Tip">
         insert into tips(phone, text, `date`, `name`, icon) values(#{phone}, #{text}, #{date}, #{name}, #{icon})
     </select>
+    <select id="updateHouse" parameterType="com.jay.entities.House">
+        update houses set ads = #{ads}, maxg = #{maxg}, `type` = #{type}, rent = #{rent}, img = #{img}, img_count = #{img_count} where phone = #{phone}
+    </select>
+    <select id="deleteHouse">
+        delete from houses where id = #{id} and phone = #{phone}
+    </select>
 
 </mapper>

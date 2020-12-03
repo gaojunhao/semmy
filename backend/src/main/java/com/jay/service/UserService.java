@@ -27,4 +27,8 @@ public interface UserService {
     Tip getOneTip(int id);
 
     void publish(Tip tip);
+
+    void updateHouse(House house);
+
+    void deleteHouse(int id, String phone);
 }

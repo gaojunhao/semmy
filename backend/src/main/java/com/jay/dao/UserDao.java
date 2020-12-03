@@ -27,4 +27,8 @@ public interface UserDao {
     Tip getOneTip(@Param("id") int id);
 
     void publish(Tip tip);
+
+    void updateHouse(House house);
+
+    void deleteHouse(@Param("id") int id, @Param("phone") String phone);
 }

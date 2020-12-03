@@ -185,5 +185,22 @@ public class UserController {
         return " publish tip success";
     }
 
+    @RequestMapping(value = "/updatehouse", method = {RequestMethod.POST})
+    @ResponseBody
+    public String updatehouse(@RequestBody House house, HttpServletResponse response) {
+        logger.info(house.getPhone());
+        logger.info(house.getAvasrc());
+        service.updateHouse(house);
+        return " update house success";
+    }
+
+    @RequestMapping(value = "/deletehouse", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public int deletehouse(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String phone = request.getParameter("phone");
+        service.deleteHouse(id, phone);
+        return 0;
+    }
 
 }
