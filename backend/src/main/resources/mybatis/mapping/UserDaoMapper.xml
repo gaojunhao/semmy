@@ -11,10 +11,10 @@
         insert into user(id, name, address) values(#{id}, #{name}, #{addr})
     </select>
     <select id="setHouses" parameterType="com.jay.entities.House">
-        insert into houses(phone, ads, maxg, `type`, rent, img, img_count, status, avasrc) values(#{phone}, #{ads}, #{maxg}, #{type}, #{rent}, #{img}, #{img_count}, #{status}, #{avasrc})
+        insert into houses(phone, rent, zulintype, quyu, ditie, address, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, img, img_count, status, avasrc) values(#{phone}, #{rent}, #{zulintype}, #{quyu}, #{ditie}, #{address}, #{xiaoqu}, #{louceng}, #{fangjiantype}, #{dianti}, #{fangjiandaxiao}, #{sex}, #{fukuantype}, #{img}, #{img_count}, #{status}, #{avasrc})
     </select>
     <select id="getAllHouses" resultType="House">
-        select id, phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
+        select id, phone, rent, zulintype, quyu, ditie, address, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, img, img_count, status, avasrc from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
     <select id="registerhouser">
     insert into houser(op, phone, name, ads, pswd, sex, uid, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid}, #{avasrc})
@@ -26,7 +26,7 @@
         select `name`, avasrc from ${ident} where phone = #{phone} and pswd = #{pswd}
     </select>
     <select id="getonehouse" resultType="House">
-        select id, phone, ads, maxg, `type`, rent, img, img_count, status, avasrc from houses where id = #{id}
+        select id, phone, rent, zulintype, quyu, ditie, address, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, img, img_count, status, avasrc from houses where id = #{id}
     </select>
     <select id="getAllTips" resultType="Tip">
         select id, phone, text, `date`, `name`, icon from tips limit #{itemcnt_start},#{itemcnt_end}
@@ -38,7 +38,7 @@
         insert into tips(phone, text, `date`, `name`, icon) values(#{phone}, #{text}, #{date}, #{name}, #{icon})
     </select>
     <select id="updateHouse" parameterType="com.jay.entities.House">
-        update houses set ads = #{ads}, maxg = #{maxg}, `type` = #{type}, rent = #{rent}, img = #{img}, img_count = #{img_count} where phone = #{phone}
+        update houses set rent = #{rent}, zulintype = #{zulintype}, quyu = #{quyu}, ditie = #{ditie}, address = #{address}, xiaoqu = #{xiaoqu}, louceng = #{louceng}, fangjiantype = #{fangjiantype}, dianti = #{dianti}, fangjiandaxiao = #{fangjiandaxiao}, sex = #{sex}, fukuantype = #{fukuantype}, img = #{img}, img_count = #{img_count} where phone = #{phone}
     </select>
     <select id="deleteHouse">
         delete from houses where id = #{id} and phone = #{phone}
