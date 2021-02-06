@@ -7,7 +7,6 @@ public class House {
     private String zulintype;
     private String quyu;
     private String ditie;
-    private String address;
     private String xiaoqu;
     private Integer louceng;
     private String fangjiantype;
@@ -15,6 +14,7 @@ public class House {
     private Integer fangjiandaxiao;
     private String sex;
     private String fukuantype;
+    private String contact;
     private String img;
     private Integer img_count;
     private String status;
@@ -22,14 +22,13 @@ public class House {
 
     public House(){}
 
-    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String address, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String img, Integer img_count, String status, String avasrc) {
+    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String contact, String img, Integer img_count, String status, String avasrc) {
         this.id = id;
         this.phone = phone;
         this.rent = rent;
         this.zulintype = zulintype;
         this.quyu = quyu;
         this.ditie = ditie;
-        this.address = address;
         this.xiaoqu =xiaoqu;
         this.louceng = louceng;
         this.fangjiantype = fangjiantype;
@@ -37,6 +36,7 @@ public class House {
         this.fangjiandaxiao = fangjiandaxiao;
         this.sex =sex;
         this.fukuantype = fukuantype;
+        this.contact = contact;
         this.img = img;
         this.img_count = img_count;
         this.status = status;
@@ -89,14 +89,6 @@ public class House {
 
     public void setDitie(String ditie) {
         this.ditie = ditie;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getXiaoqu() {
@@ -155,6 +147,14 @@ public class House {
         this.fukuantype = fukuantype;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
     public String getImg() {
         return img;
     }
@@ -196,7 +196,6 @@ public class House {
                 ", \"zulintype\":\"" + zulintype + '\"' +
                 ", \"quyu\":\"" + quyu + '\"' +
                 ", \"ditie\":\"" + ditie + '\"' +
-                ", \"address\":\"" + address + '\"' +
                 ", \"xiaoqu\":\"" + xiaoqu + '\"' +
                 ", \"louceng\":\"" + louceng + '\"' +
                 ", \"fangjiantype\":\"" + fangjiantype + '\"' +
@@ -204,6 +203,7 @@ public class House {
                 ", \"fangjiandaxiao\":\"" + fangjiandaxiao + '\"' +
                 ", \"sex\":\"" + sex + '\"' +
                 ", \"fukuantype\":\"" + fukuantype + '\"' +
+                ", \"contact\":\"" + contact + '\"' +
                 ", \"img\":\"" + img + '\"' +
                 ", \"img_count\":\"" + img_count + '\"' +
                 ", \"status\":\"" + status + '\"' +

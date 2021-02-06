@@ -1,7 +1,6 @@
 package com.jay.controller;
 
 import com.jay.entities.House;
-import com.jay.entities.Logininfo;
 import com.jay.entities.Tip;
 import com.jay.entities.User;
 import com.jay.service.UserService;
@@ -27,68 +26,12 @@ public class UserController {
     @Resource
     private UserService service;
 
-    /**
-     *返回user对象信息给page1.jsp处理，然后在前端页面展示
-     */
-    @RequestMapping("/page1")
-    public ModelAndView getUser() {
-        System.out.println("访问page1的后台。。。");
-        ModelAndView mav = new ModelAndView("page1");
-        List<User> users = service.getAllUser();
-        System.out.println(users);
-        mav.addObject("user", users.get(0));
-        return mav;
-//        return "page1"; //跳转到.jsp结尾的对应文件（page1.jsp）,此时返回值是String
-    }
-
-    /**
-     * 直接返回字符串给请求的页面（这里在请求URL增加参数v是验证前后台通信是否正常）
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/say", produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String sayHi(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("v");
-        List<User> users = service.getAllUser();
-        logger.info("{name:jay,context:hi,你好}");
-        return users.toString();
-    }
-
-    @RequestMapping(value = "/set", produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String setHi(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String addr = request.getParameter("address");
-        service.setUser(id, name, addr);
-        List<User> users = service.getAllUser();
-        logger.info("{name:jay,context:set,你好}");
-        return "-{name:jay,context:hi,你好}"+ users;
-    }
-
-    @RequestMapping(value = "/setjson", method = {RequestMethod.POST})
-    @ResponseBody
-    public String setjsonHi(@RequestBody Map map, HttpServletResponse response) {
-        String id_str = (String) map.get("id");
-        int id = Integer.parseInt(id_str);
-        String name = (String) map.get("name");
-        String addr = (String) map.get("address");
-        service.setUser(id, name, addr);
-        List<User> users = service.getAllUser();
-        logger.info("{name:jay,context:set,你好}");
-        return "-{name:jay,context:hi,你好}"+ users;
-    }
-
     @RequestMapping(value = "/sethouses", method = {RequestMethod.POST})
     @ResponseBody
     public String sethouses(@RequestBody House house, HttpServletResponse response) {
-        logger.info(house.getPhone());
-        logger.info(house.getAvasrc());
         service.setHouses(house);
         return " set house success";
-    }
+}
 
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
     @ResponseBody
@@ -107,56 +50,19 @@ public class UserController {
         return house.toString();
     }
 
-    @RequestMapping(value = "/registerhouser", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/getuserphone", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String registerhouser(HttpServletRequest request, HttpServletResponse response) {
-        String op = request.getParameter("op");
-        String phone = request.getParameter("phone");
-        String name = request.getParameter("name");
-        String ads = request.getParameter("ads");
-        String pswd = request.getParameter("pswd");
-        String sex = request.getParameter("sex");
-        String uid = request.getParameter("uid");
-        String avasrc = request.getParameter("avasrc");
-        service.registerhouser(op, phone, name, ads, pswd, sex, uid, avasrc);
-        logger.info("{name:jay,context:set,你好}");
-        return "-{name:jay,context:hi,你好}";
+    public String getuserphone(HttpServletRequest request, HttpServletResponse response) {
+        String nickName = request.getParameter("nickName");
+        String phone = service.getuserphone(nickName);
+        return phone;
     }
 
-    @RequestMapping(value = "/registerowner", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/registeruser", method = {RequestMethod.POST})
     @ResponseBody
-    public String registerowner(HttpServletRequest request, HttpServletResponse response) {
-        String op = request.getParameter("op");
-        String phone = request.getParameter("phone");
-        String name = request.getParameter("name");
-        String ads = request.getParameter("ads");
-        String pswd = request.getParameter("pswd");
-        String avasrc = request.getParameter("avasrc");
-        service.registerowner(op, phone, name, ads, pswd, avasrc);
-        logger.info("{name:jay,context:set,你好}");
-        return "-{name:jay,context:hi,你好}";
-    }
-
-    @RequestMapping(value = "/login", produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String login(HttpServletRequest request, HttpServletResponse response) {
-        String phone = request.getParameter("phone");
-        String pswd = request.getParameter("pswd");
-        String ident = request.getParameter("ident");
-        String table = "";
-        String host_str = "2";
-        if (ident.equals(host_str))
-            table = "owner";
-        else
-            table = "houser";
-        logger.info(table);
-        String rtval = "-2";
-        Logininfo logininfo = service.login(phone, pswd, table);
-        if (logininfo == null)
-            rtval = "-1 ";
-        else
-            rtval = "1 ";
-        return rtval + logininfo;
+    public String registeruser(@RequestBody User user, HttpServletResponse response) {
+        service.registeruser(user);
+        return "register user success";
     }
 
     @RequestMapping(value = "/getAllTips", produces = "text/html;charset=UTF-8")
@@ -179,8 +85,6 @@ public class UserController {
     @RequestMapping(value = "/publish", method = {RequestMethod.POST})
     @ResponseBody
     public String publish(@RequestBody Tip tip, HttpServletResponse response) {
-        //logger.info(house.getPhone());
-        //logger.info(house.getAvasrc());
         service.publish(tip);
         return " publish tip success";
     }

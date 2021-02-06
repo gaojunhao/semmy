@@ -2,15 +2,21 @@ package com.jay.entities;
 
 public class User {
     private Integer id;
-    private String name;
-    private String address;
+    private String phone;
+    private String nickName;
+    private String avatarUrl;
+    private String province;
+    private String city;
 
     public User(){}
 
-    public User(Integer id, String name, String address) {
+    public User(Integer id, String phone, String nickName, String avatarUrl, String province, String city) {
         this.id = id;
-        this.name = name;
-        this.address = address;
+        this.phone = phone;
+        this.nickName = nickName;
+        this.avatarUrl = avatarUrl;
+        this.province = province;
+        this.city = city;
     }
 
     public Integer getId() {
@@ -21,28 +27,55 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
         return "{" +
                 "\"id\":" + id +
-                ", \"name\":\"" + name + '\"' +
-                ", \"address\":\"" + address + '\"' +
+                ", \"phone\":\"" + phone + '\"' +
+                ", \"nickName\":\"" + nickName + '\"' +
+                ", \"avatarUrl\":\"" + avatarUrl + '\"' +
+                ", \"province\":\"" + province + '\"' +
+                ", \"city\":\"" + city + '\"' +
                 '}';
     }
 }

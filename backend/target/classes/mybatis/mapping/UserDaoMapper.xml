@@ -4,29 +4,14 @@
 <!--命名空间是对应接口的包名+类名,指定要映射的接口 -->
 <mapper namespace="com.jay.dao.UserDao">
     <!--id是接口中的方法名，结果类型如没有在mybatis.xml文件中配置别名，则必须使用全名称（包名+类名） -->
-    <select id="getAllUsers" resultType="User">
-        select id,`name`,address from user
-    </select>
-    <select id="setUser">
-        insert into user(id, name, address) values(#{id}, #{name}, #{addr})
-    </select>
     <select id="setHouses" parameterType="com.jay.entities.House">
-        insert into houses(phone, ads, maxg, `type`, rent, img, img_count, status, avasrc) values(#{phone}, #{ads}, #{maxg}, #{type}, #{rent}, #{img}, #{img_count}, #{status}, #{avasrc})
+        insert into houses(phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc) values(#{phone}, #{rent}, #{zulintype}, #{quyu}, #{ditie}, #{xiaoqu}, #{louceng}, #{fangjiantype}, #{dianti}, #{fangjiandaxiao}, #{sex}, #{fukuantype}, #{contact}, #{img}, #{img_count}, #{status}, #{avasrc})
     </select>
     <select id="getAllHouses" resultType="House">
-        select id, phone, ads, maxg, `type`, rent, img, img_count, status from houses limit #{itemcnt_start},#{itemcnt_end}
-    </select>
-    <select id="registerhouser">
-    insert into houser(op, phone, name, ads, pswd, sex, uid, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{sex}, #{uid}, #{avasrc})
-    </select>
-    <select id="registerowner">
-    insert into owner(op, phone, name, ads, pswd, avasrc) values(#{op}, #{phone}, #{name}, #{ads}, #{pswd}, #{avasrc})
-    </select>
-    <select id="login" resultType="Logininfo">
-        select `name`, avasrc from ${ident} where phone = #{phone} and pswd = #{pswd}
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses limit #{itemcnt_start},#{itemcnt_end}
     </select>
     <select id="getonehouse" resultType="House">
-        select id, phone, ads, maxg, `type`, rent, img, img_count, status, avasrc from houses where id = #{id}
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where id = #{id}
     </select>
     <select id="getAllTips" resultType="Tip">
         select id, phone, text, `date`, `name`, icon from tips limit #{itemcnt_start},#{itemcnt_end}
@@ -34,11 +19,17 @@
     <select id="getOneTip" resultType="Tip">
         select id, phone, text, `date`, `name`, icon from tips where id = #{id}
     </select>
+    <select id="getuserphone" resultType="java.lang.String">
+        select phone from user where nickName = #{nickName}
+    </select>
+    <select id="registeruser" parameterType="com.jay.entities.User">
+        insert into user(phone, nickName, avatarUrl, province, city) values(#{phone}, #{nickName}, #{avatarUrl}, #{province}, #{city})
+    </select>
     <select id="publish" parameterType="com.jay.entities.Tip">
         insert into tips(phone, text, `date`, `name`, icon) values(#{phone}, #{text}, #{date}, #{name}, #{icon})
     </select>
     <select id="updateHouse" parameterType="com.jay.entities.House">
-        update houses set ads = #{ads}, maxg = #{maxg}, `type` = #{type}, rent = #{rent}, img = #{img}, img_count = #{img_count} where phone = #{phone}
+        update houses set rent = #{rent}, zulintype = #{zulintype}, quyu = #{quyu}, ditie = #{ditie}, xiaoqu = #{xiaoqu}, louceng = #{louceng}, fangjiantype = #{fangjiantype}, dianti = #{dianti}, fangjiandaxiao = #{fangjiandaxiao}, sex = #{sex}, fukuantype = #{fukuantype}, contact = #{contact}, img = #{img}, img_count = #{img_count} where phone = #{phone}
     </select>
     <select id="deleteHouse">
         delete from houses where id = #{id} and phone = #{phone}
