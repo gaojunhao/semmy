@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
-    List<House> getAllHouses(int itemcnt_start, int itemcnt_end);
+    List<House> getAllHouses(int itemcnt_start, int itemcnt_end, String quyu, String ditie, String fangjiantype, String zulintype, int price);
 
     void setHouses(House house);
 

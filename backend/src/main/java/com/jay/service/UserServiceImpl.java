@@ -68,7 +68,68 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<House> getAllHouses(int itemcnt_start, int itemcnt_end) {
-        return userDao.getAllHouses(itemcnt_start, itemcnt_end);
+    public List<House> getAllHouses(int itemcnt_start, int itemcnt_end, String quyu, String ditie, String fangjiantype, String zulintype, int price) {
+        if (quyu != null && fangjiantype == null && zulintype == null && price == -1) {
+            return userDao.getAllHousesquyu(quyu, itemcnt_start, itemcnt_end);
+        } else if (quyu == null && fangjiantype != null && zulintype == null && price == -1) {
+            return userDao.getAllHousesquyufang(quyu, fangjiantype, itemcnt_start, itemcnt_end);
+        } else if (quyu == null && fangjiantype == null && zulintype != null && price == -1) {
+            return userDao.getAllHousesquyuzulin(quyu, zulintype, itemcnt_start, itemcnt_end);
+        } else if (quyu == null && fangjiantype == null && zulintype == null && price != -1) {
+
+        } else if (quyu != null && fangjiantype != null && zulintype == null && price == -1) {
+
+        } else if (quyu != null && fangjiantype == null && zulintype != null && price == -1) {
+
+        } else if (quyu != null && fangjiantype == null && zulintype == null && price != -1) {
+
+        } else if (quyu == null && fangjiantype != null && zulintype != null && price == -1) {
+
+        } else if (quyu == null && fangjiantype != null && zulintype == null && price != -1) {
+
+        } else if (quyu == null && fangjiantype == null && zulintype != null && price != -1) {
+
+        } else if (quyu != null && fangjiantype != null && zulintype != null && price == -1) {
+
+        } else if (quyu != null && fangjiantype != null && zulintype == null && price != -1) {
+
+        } else if (quyu != null && fangjiantype == null && zulintype != null && price != -1) {
+
+        } else if (quyu == null && fangjiantype != null && zulintype != null && price != -1) {
+
+        } else if (quyu != null && fangjiantype != null && zulintype != null && price != -1) {
+
+        } else if (ditie != null && fangjiantype == null && zulintype == null && price == -1) {
+
+        } else if (ditie == null && fangjiantype != null && zulintype == null && price == -1) {
+
+        } else if (ditie == null && fangjiantype == null && zulintype != null && price == -1) {
+
+        } else if (ditie == null && fangjiantype == null && zulintype == null && price != -1) {
+
+        } else if (ditie != null && fangjiantype != null && zulintype == null && price == -1) {
+
+        } else if (ditie != null && fangjiantype == null && zulintype != null && price == -1) {
+
+        } else if (ditie != null && fangjiantype == null && zulintype == null && price != -1) {
+
+        } else if (ditie == null && fangjiantype != null && zulintype != null && price == -1) {
+
+        } else if (ditie == null && fangjiantype != null && zulintype == null && price != -1) {
+
+        } else if (ditie == null && fangjiantype == null && zulintype != null && price != -1) {
+
+        } else if (ditie != null && fangjiantype != null && zulintype != null && price == -1) {
+
+        } else if (ditie != null && fangjiantype != null && zulintype == null && price != -1) {
+
+        } else if (ditie != null && fangjiantype == null && zulintype != null && price != -1) {
+
+        } else if (ditie == null && fangjiantype != null && zulintype != null && price != -1) {
+
+        } else if (ditie != null && fangjiantype != null && zulintype != null && price != -1) {
+
+        }
+            return userDao.getAllHouses(itemcnt_start, itemcnt_end);
     }
 }
