@@ -28,75 +28,75 @@ public interface UserDao {
 
     void delOnetip(@Param("id") int id, @Param("phone") String phone);
 
-    String getuserphone(String nickName);
+    String getuserphone(@Param("nickName")String nickName);
 
-    List<House> getAllHousesquyu(String quyu, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyu(@Param("quyu")String quyu, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfang(String fangjiantype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfang(@Param("fangjiantype")String fangjiantype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHouseszulin(String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHouseszulin(@Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousespriceend(int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousespriceend(@Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousespricestart(int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousespricestart(@Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufang(String quyu, String fangjiantype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufang(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyuzulin(String quyu, String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyuzulin(@Param("quyu")String quyu, @Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyupriceend(String quyu, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyupriceend(@Param("quyu")String quyu, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyupricestart(String quyu, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyupricestart(@Param("quyu")String quyu, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfangzulin(String fangjiantype, String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfangzulin(@Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfangpriceend(String fangjiantype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfangpriceend(@Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfangpricestart(String fangjiantype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfangpricestart(@Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHouseszulintypepriceend(String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHouseszulintypepriceend(@Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHouseszulintypepricestart(String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHouseszulintypepricestart(@Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufangzulin(String quyu, String fangjiantype, String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufangzulin(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufangpriceend(String quyu, String fangjiantype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufangpriceend(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufangpricestart(String quyu, String fangjiantype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufangpricestart(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyuzulinpriceend(String quyu, String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyuzulinpriceend(@Param("quyu")String quyu, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyuzulinpricestart(String quyu, String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyuzulinpricestart(@Param("quyu")String quyu, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfangzulinpriceend(String fangjiantype, String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfangzulinpriceend(@Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesfangzulinpricestart(String fangjiantype, String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesfangzulinpricestart(@Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufangzulinpriceend(String quyu, String fangjiantype, String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufangzulinpriceend(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesquyufangzulinpricestart(String quyu, String fangjiantype, String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesquyufangzulinpricestart(@Param("quyu")String quyu, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditie(String ditie, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditie(@Param("ditie")String ditie, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefang(String quyu, String fangjiantype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefang(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiezulin(String quyu, String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiezulin(@Param("ditie")String ditie, @Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiepriceend(String ditie, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiepriceend(@Param("ditie")String ditie, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiepricestart(String ditie, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiepricestart(@Param("ditie")String ditie, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefangzulin(String ditie, String fangjiantype, String zulintype, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefangzulin(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefangpriceend(String ditie, String fangjiantype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefangpriceend(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefangpricestart(String ditie, String fangjiantype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefangpricestart(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiezulinpriceend(String ditie, String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiezulinpriceend(@Param("ditie")String ditie, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiezulinpricestart(String ditie, String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiezulinpricestart(@Param("ditie")String ditie, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefangzulinpriceend(String ditie, String fangjiantype, String zulintype, int price, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefangzulinpriceend(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
-    List<House> getAllHousesditiefangzulinpricestart(String ditie, String fangjiantype, String zulintype, int price, int i, int itemcnt_start, int itemcnt_end);
+    List<House> getAllHousesditiefangzulinpricestart(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 }

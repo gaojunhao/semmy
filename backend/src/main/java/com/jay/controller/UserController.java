@@ -36,6 +36,7 @@ public class UserController {
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getAllhouses(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("###getAllhouses###");
         int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
         logger.info("before quyu");
         String quyu = request.getParameter("quyu");
@@ -46,26 +47,29 @@ public class UserController {
         int itemcnt_end = 5;
         int price = -1;
         logger.info("before rent");
-        int rent = Integer.parseInt(request.getParameter("rent"));
-        logger.info("after rent");
-        if (rent == 1) {
-            price = 0;
-        } else if (rent == 2){
-            price = 1000;
-        } else if (rent == 3){
-            price = 2000;
-        } else if (rent == 4){
-            price = 3000;
-        } else if (rent == 5){
-            price = 4000;
-        } else if (rent == 6){
-            price = 5000;
-        } else if (rent == 7){
-            price = 6000;
-        } else if (rent == 8){
-            price = 7000;
-        } else {
-            price = -1;
+        String rent_str = request.getParameter("rent");
+        if (rent_str != null) {
+            int rent = Integer.parseInt(request.getParameter("rent"));
+            logger.info("after rent");
+            if (rent == 1) {
+                price = 0;
+            } else if (rent == 2) {
+                price = 1000;
+            } else if (rent == 3) {
+                price = 2000;
+            } else if (rent == 4) {
+                price = 3000;
+            } else if (rent == 5) {
+                price = 4000;
+            } else if (rent == 6) {
+                price = 5000;
+            } else if (rent == 7) {
+                price = 6000;
+            } else if (rent == 8) {
+                price = 7000;
+            } else {
+                price = -1;
+            }
         }
         List<House> houses = service.getAllHouses(itemcnt_start, itemcnt_end, quyu, ditie, fangjiantype, zulintype, price);
         return houses.toString();

@@ -135,9 +135,9 @@ public class UserServiceImpl implements UserService {
         } else if (ditie != null && fangjiantype == null && zulintype == null && price == -1) {
             return userDao.getAllHousesditie(ditie, itemcnt_start, itemcnt_end);
         } else if (ditie != null && fangjiantype != null && zulintype == null && price == -1) {
-            return userDao.getAllHousesditiefang(quyu, fangjiantype, itemcnt_start, itemcnt_end);
+            return userDao.getAllHousesditiefang(ditie, fangjiantype, itemcnt_start, itemcnt_end);
         } else if (ditie != null && fangjiantype == null && zulintype != null && price == -1) {
-            return userDao.getAllHousesditiezulin(quyu, zulintype, itemcnt_start, itemcnt_end);
+            return userDao.getAllHousesditiezulin(ditie, zulintype, itemcnt_start, itemcnt_end);
         } else if (ditie != null && fangjiantype == null && zulintype == null && price != -1) {
             if (price == 8){
                 return userDao.getAllHousesditiepriceend(ditie, price, itemcnt_start, itemcnt_end);
