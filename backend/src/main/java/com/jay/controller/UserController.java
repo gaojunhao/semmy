@@ -37,13 +37,17 @@ public class UserController {
     @ResponseBody
     public String getAllhouses(HttpServletRequest request, HttpServletResponse response) {
         int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
+        logger.info("before quyu");
         String quyu = request.getParameter("quyu");
+        logger.info("after quyu");
         String ditie = request.getParameter("ditie");
         String fangjiantype = request.getParameter("fangjiantype");
         String zulintype = request.getParameter("zulintype");
         int itemcnt_end = 5;
         int price = -1;
+        logger.info("before rent");
         int rent = Integer.parseInt(request.getParameter("rent"));
+        logger.info("after rent");
         if (rent == 1) {
             price = 0;
         } else if (rent == 2){

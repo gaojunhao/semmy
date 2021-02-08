@@ -38,4 +38,113 @@
         delete from tips where id = #{id} and phone = #{phone}
     </select>
 
+    <select id="getAllHousesquyu" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfang" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHouseszulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousespriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousespricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufang" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyuzulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyupriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyupricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfangzulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} and zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfangpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfangpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHouseszulintypepriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHouseszulintypepricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufangzulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufangpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufangpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyuzulinpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyuzulinpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfangzulinpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesfangzulinpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufangzulinpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesquyufangzulinpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditie" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefang" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiezulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiepriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiepricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefangzulin" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefangpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefangpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiezulinpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiezulinpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefangzulinpriceend" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+    <select id="getAllHousesditiefangzulinpricestart" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where ditie = #{ditie} and fangjiantype = #{fangjiantype} and zulintype = #{zulintype} and rent >= #{price} <![CDATA[and rent < #{price_end}]]> limit #{itemcnt_start},#{itemcnt_end}
+    </select>
+
+
+
+
 </mapper>
