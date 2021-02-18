@@ -29,4 +29,6 @@ public interface UserService {
     void registeruser(User user);
 
     String getuserphone(String nickName);
+
+    int gethousenum(String phone);
 }

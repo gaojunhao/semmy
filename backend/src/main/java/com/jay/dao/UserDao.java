@@ -99,4 +99,6 @@ public interface UserDao {
     List<House> getAllHousesditiefangzulinpriceend(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
 
     List<House> getAllHousesditiefangzulinpricestart(@Param("ditie")String ditie, @Param("fangjiantype")String fangjiantype, @Param("zulintype")String zulintype, @Param("price")int price, @Param("price_end")int price_end, @Param("itemcnt_start")int itemcnt_start, @Param("itemcnt_end")int itemcnt_end);
+
+    int gethousenum(@Param("phone")String phone);
 }

@@ -37,6 +37,9 @@
     <select id="delOnetip">
         delete from tips where id = #{id} and phone = #{phone}
     </select>
+    <select id="gethousenum" resultType="java.lang.Integer">
+        select count(*) from houses where phone = #{phone}
+    </select>
 
     <select id="getAllHousesquyu" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where quyu = #{quyu} limit #{itemcnt_start},#{itemcnt_end}

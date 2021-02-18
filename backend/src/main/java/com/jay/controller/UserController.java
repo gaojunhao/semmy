@@ -33,6 +33,14 @@ public class UserController {
         return " set house success";
 }
 
+    @RequestMapping(value = "/gethousenum", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public int gethousenum(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        int housenum = service.gethousenum(phone);
+        return housenum;
+    }
+
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getAllhouses(HttpServletRequest request, HttpServletResponse response) {
@@ -40,10 +48,14 @@ public class UserController {
         int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
         logger.info("before quyu");
         String quyu = request.getParameter("quyu");
+        logger.info(quyu);
         logger.info("after quyu");
         String ditie = request.getParameter("ditie");
+        logger.info(ditie);
         String fangjiantype = request.getParameter("fangjiantype");
+        logger.info(fangjiantype);
         String zulintype = request.getParameter("zulintype");
+        logger.info(zulintype);
         int itemcnt_end = 5;
         int price = -1;
         logger.info("before rent");
@@ -71,6 +83,7 @@ public class UserController {
                 price = -1;
             }
         }
+        logger.info(price);
         List<House> houses = service.getAllHouses(itemcnt_start, itemcnt_end, quyu, ditie, fangjiantype, zulintype, price);
         return houses.toString();
     }
