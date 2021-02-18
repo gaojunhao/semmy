@@ -35,10 +35,11 @@ public class UserController {
 
     @RequestMapping(value = "/gethousenum", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public int gethousenum(HttpServletRequest request, HttpServletResponse response) {
+    public String gethousenum(HttpServletRequest request, HttpServletResponse response) {
         String phone = request.getParameter("phone");
         int housenum = service.gethousenum(phone);
-        return housenum;
+        String housenum_str = Integer.toString(housenum);
+        return "{" + "\"housenum\":\"" + housenum_str + "\"" + "}";
     }
 
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
