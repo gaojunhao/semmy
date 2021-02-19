@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
     public int gethousenum(String phone) {return userDao.gethousenum(phone);}
 
     @Override
+    public House getoneHousebyphone(String phone) {
+        return userDao.getonehousebyphone(phone);
+    }
+
+    @Override
     public void updateHouse(House house) {
         userDao.updateHouse(house);
     }

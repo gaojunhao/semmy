@@ -97,6 +97,14 @@ public class UserController {
         return house.toString();
     }
 
+    @RequestMapping(value = "/getonehousebyphone", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getonehousebyphone(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        House house = service.getoneHousebyphone(phone);
+        return house.toString();
+    }
+
     @RequestMapping(value = "/getuserphone", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getuserphone(HttpServletRequest request, HttpServletResponse response) {

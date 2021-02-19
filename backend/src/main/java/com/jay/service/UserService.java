@@ -31,4 +31,6 @@ public interface UserService {
     String getuserphone(String nickName);
 
     int gethousenum(String phone);
+
+    House getoneHousebyphone(String phone);
 }

@@ -13,6 +13,9 @@
     <select id="getonehouse" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where id = #{id}
     </select>
+    <select id="getonehousebyphone" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where phone = #{phone}
+    </select>
     <select id="getAllTips" resultType="Tip">
         select id, phone, text, `date`, `name`, icon from tips limit #{itemcnt_start},#{itemcnt_end}
     </select>
