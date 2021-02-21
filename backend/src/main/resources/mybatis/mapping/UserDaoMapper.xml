@@ -13,6 +13,9 @@
     <select id="getonehouse" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where id = #{id}
     </select>
+    <select id="gethousebyid" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where id in (${_parameter})
+    </select>
     <select id="getonehousebyphone" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc from houses where phone = #{phone}
     </select>
@@ -26,7 +29,13 @@
         select phone from user where nickName = #{nickName}
     </select>
     <select id="registeruser" parameterType="com.jay.entities.User">
-        insert into user(phone, nickName, avatarUrl, province, city) values(#{phone}, #{nickName}, #{avatarUrl}, #{province}, #{city})
+        insert into user(phone, nickName, avatarUrl, province, city, collect) values(#{phone}, #{nickName}, #{avatarUrl}, #{province}, #{city}, #{collect})
+    </select>
+    <select id="addcollect" parameterType="com.jay.entities.User">
+        update user set collect = #{collect} where phone = #{phone}
+    </select>
+    <select id="getcollect" resultType="com.jay.entities.User">
+        select id, phone, nickName, avatarUrl, province, city, collect from user where phone = #{phone}
     </select>
     <select id="publish" parameterType="com.jay.entities.Tip">
         insert into tips(phone, text, `date`, `name`, icon) values(#{phone}, #{text}, #{date}, #{name}, #{icon})

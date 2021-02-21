@@ -103,4 +103,10 @@ public interface UserDao {
     int gethousenum(@Param("phone")String phone);
 
     House getonehousebyphone(String phone);
+
+    void addcollect(User user);
+
+    User getcollect(String phone);
+
+    List<House> gethousebyid(String id_arr);
 }

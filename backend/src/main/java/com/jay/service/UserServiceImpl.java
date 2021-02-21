@@ -61,6 +61,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addcollect(User user) {
+        userDao.addcollect(user);
+    }
+
+    @Override
+    public User getcollect(String phone) {
+        return userDao.getcollect(phone);
+    }
+
+    @Override
+    public List<House> gethousebyid(String id_arr) {
+        return userDao.gethousebyid(id_arr);
+    }
+
+    @Override
     public void updateHouse(House house) {
         userDao.updateHouse(house);
     }

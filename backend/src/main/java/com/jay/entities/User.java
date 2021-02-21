@@ -7,16 +7,18 @@ public class User {
     private String avatarUrl;
     private String province;
     private String city;
+    private String collect;
 
     public User(){}
 
-    public User(Integer id, String phone, String nickName, String avatarUrl, String province, String city) {
+    public User(Integer id, String phone, String nickName, String avatarUrl, String province, String city, String collect) {
         this.id = id;
         this.phone = phone;
         this.nickName = nickName;
         this.avatarUrl = avatarUrl;
         this.province = province;
         this.city = city;
+        this.collect = collect;
     }
 
     public Integer getId() {
@@ -67,6 +69,14 @@ public class User {
         this.city = city;
     }
 
+    public String getCollect() {
+        return collect;
+    }
+
+    public void setCollect(String collect) {
+        this.collect = collect;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -76,6 +86,7 @@ public class User {
                 ", \"avatarUrl\":\"" + avatarUrl + '\"' +
                 ", \"province\":\"" + province + '\"' +
                 ", \"city\":\"" + city + '\"' +
+                ", \"collect\":\"" + collect + '\"' +
                 '}';
     }
 }

@@ -33,4 +33,10 @@ public interface UserService {
     int gethousenum(String phone);
 
     House getoneHousebyphone(String phone);
+
+    void addcollect(User user);
+
+    User getcollect(String phone);
+
+    List<House> gethousebyid(String id_arr);
 }

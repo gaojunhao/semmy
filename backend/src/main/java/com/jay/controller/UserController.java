@@ -4,6 +4,8 @@ import com.jay.entities.House;
 import com.jay.entities.Tip;
 import com.jay.entities.User;
 import com.jay.service.UserService;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import com.sun.deploy.util.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -97,11 +100,24 @@ public class UserController {
         return house.toString();
     }
 
+    @RequestMapping(value = "/gethousebyid", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String gethousebyid(HttpServletRequest request, HttpServletResponse response) {
+        String id_arr = request.getParameter("id");
+        logger.info("##gethousebyid");
+        logger.info(id_arr);
+        List<House> houses = service.gethousebyid(id_arr);
+        logger.info(houses.size());
+        return houses.toString();
+    }
+
     @RequestMapping(value = "/getonehousebyphone", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getonehousebyphone(HttpServletRequest request, HttpServletResponse response) {
         String phone = request.getParameter("phone");
         House house = service.getoneHousebyphone(phone);
+        if (house == null)
+            return "{" + "\"id\":\"" + "-1" + "\"" + "}";
         return house.toString();
     }
 
@@ -118,6 +134,79 @@ public class UserController {
     public String registeruser(@RequestBody User user, HttpServletResponse response) {
         service.registeruser(user);
         return "register user success";
+    }
+
+    @RequestMapping(value = "/containid", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String containid(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String phone = request.getParameter("phone");
+        User user = service.getcollect(phone);
+        String collect = user.getCollect();
+        HashSet<String> h1 = new HashSet<String>();
+        for(int i=0;i<collect.split(",").length;i++){
+            h1.add(collect.split(",")[i]);
+        }
+        if (h1.contains(id))
+            return "{" + "\"result\":\"" + "true" + "\"" + "}";
+        else
+            return "{" + "\"result\":\"" + "false" + "\"" + "}";
+    }
+
+    @RequestMapping(value = "/getcollect", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getcollect(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        User user = service.getcollect(phone);
+        String collect = user.getCollect();
+        return "{" + "\"collect\":\"" + collect + "\"" + "}";
+    }
+
+    @RequestMapping(value = "/addcollect", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String addcollect(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String phone = request.getParameter("phone");
+        User user = service.getcollect(phone);
+        String collect = user.getCollect();
+        if (collect.equals(""))
+            collect = id;
+        else
+            collect = collect + ',' + id;
+        user.setCollect(collect);
+        service.addcollect(user);
+        return "addcollect success";
+    }
+
+    @RequestMapping(value = "/delcollect", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String delcollect(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String phone = request.getParameter("phone");
+        User user = service.getcollect(phone);
+        String collect = user.getCollect();
+        HashSet<String> h1 = new HashSet<String>();
+        for(int i=0;i<collect.split(",").length;i++){
+            h1.add(collect.split(",")[i]);
+        }
+        h1.remove(id);
+        String new_coll = "";
+        if (h1.isEmpty()) {
+            new_coll = "";
+        }else if (h1.size() == 1) {
+            new_coll = h1.toArray(new String[1])[0];
+        }else {
+            for (String coll: h1) {
+                h1.remove(coll);
+                if (h1.isEmpty())
+                    new_coll = new_coll + coll;
+                else
+                    new_coll = new_coll + coll + ",";
+            }
+        }
+        user.setCollect(new_coll);
+        service.addcollect(user);
+        return "addcollect success";
     }
 
     @RequestMapping(value = "/getAllTips", produces = "text/html;charset=UTF-8")
