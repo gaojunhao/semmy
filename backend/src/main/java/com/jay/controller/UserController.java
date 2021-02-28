@@ -4,22 +4,24 @@ import com.jay.entities.House;
 import com.jay.entities.Tip;
 import com.jay.entities.User;
 import com.jay.service.UserService;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
-import com.sun.deploy.util.StringUtils;
 import org.apache.log4j.Logger;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.security.AlgorithmParameters;
+import java.security.Security;
+import com.alibaba.fastjson.JSONObject;
+import java.util.*;
 
 
 @Controller
@@ -43,6 +45,46 @@ public class UserController {
         int housenum = service.gethousenum(phone);
         String housenum_str = Integer.toString(housenum);
         return "{" + "\"housenum\":\"" + housenum_str + "\"" + "}";
+    }
+
+    @RequestMapping(value = "/getphone", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public JSONObject getphone(HttpServletRequest request, HttpServletResponse response) {
+        String session_key = request.getParameter("session_key");
+        String encryptedData = request.getParameter("encryptedData");
+        String iv = request.getParameter("iv");
+        // 被加密的数据
+        byte[] dataByte = Base64.getDecoder().decode(encryptedData);
+        // 加密秘钥
+        byte[] keyByte = Base64.getDecoder().decode(session_key);
+        // 偏移量
+        byte[] ivByte = Base64.getDecoder().decode(iv);
+        try {
+            // 如果密钥不足16位，那么就补足.  这个if 中的内容很重要
+            int base = 16;
+            if (keyByte.length % base != 0) {
+                int groups = keyByte.length / base + (keyByte.length % base != 0 ? 1 : 0);
+                byte[] temp = new byte[groups * base];
+                Arrays.fill(temp, (byte) 0);
+                System.arraycopy(keyByte, 0, temp, 0, keyByte.length);
+                keyByte = temp;
+            }
+            // 初始化
+            Security.addProvider(new BouncyCastleProvider());
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            SecretKeySpec spec = new SecretKeySpec(keyByte, "AES");
+            AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
+            parameters.init(new IvParameterSpec(ivByte));
+            cipher.init(Cipher.DECRYPT_MODE, spec, parameters);// 初始化
+            byte[] resultByte = cipher.doFinal(dataByte);
+            if (null != resultByte && resultByte.length > 0) {
+                String result = new String(resultByte, "UTF-8");
+                return JSONObject.parseObject(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
@@ -235,11 +277,11 @@ public class UserController {
 
     @RequestMapping(value = "/updatehouse", method = {RequestMethod.POST})
     @ResponseBody
-    public String updatehouse(@RequestBody House house, HttpServletResponse response) {
+    public Integer updatehouse(@RequestBody House house, HttpServletResponse response) {
         logger.info(house.getPhone());
         logger.info(house.getAvasrc());
         service.updateHouse(house);
-        return " update house success";
+        return house.getId();
     }
 
     @RequestMapping(value = "/deletehouse", produces = "text/html;charset=UTF-8")
