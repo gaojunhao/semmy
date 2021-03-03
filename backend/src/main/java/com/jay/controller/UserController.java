@@ -1,5 +1,6 @@
 package com.jay.controller;
 
+import com.jay.entities.Encrypt;
 import com.jay.entities.House;
 import com.jay.entities.Tip;
 import com.jay.entities.User;
@@ -14,14 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.AlgorithmParameters;
-import java.security.Security;
+import java.security.*;
+
 import com.alibaba.fastjson.JSONObject;
 import java.util.*;
+
+import org.apache.commons.codec.binary.Base64;
 
 
 @Controller
@@ -47,44 +51,43 @@ public class UserController {
         return "{" + "\"housenum\":\"" + housenum_str + "\"" + "}";
     }
 
-    @RequestMapping(value = "/getphone", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/getphone", method = {RequestMethod.POST})
     @ResponseBody
-    public JSONObject getphone(HttpServletRequest request, HttpServletResponse response) {
-        String session_key = request.getParameter("session_key");
-        String encryptedData = request.getParameter("encryptedData");
-        String iv = request.getParameter("iv");
+    public String getphone(@RequestBody Encrypt encrypt, HttpServletResponse response){
+        String session_key = encrypt.getSession_key();
+        String encryptedData = encrypt.getEncryptedData();
+        String iv = encrypt.getIv();
+        logger.info(session_key);
+        logger.info(encryptedData);
+        logger.info("iv");
+        logger.info(iv);
         // 被加密的数据
-        byte[] dataByte = Base64.getDecoder().decode(encryptedData);
+        byte[] dataByte = Base64.decodeBase64(encryptedData);
         // 加密秘钥
-        byte[] keyByte = Base64.getDecoder().decode(session_key);
+        byte[] keyByte = Base64.decodeBase64(session_key);
         // 偏移量
-        byte[] ivByte = Base64.getDecoder().decode(iv);
+        byte[] ivByte = Base64.decodeBase64(iv);
+        logger.info("ivByte");
+        logger.info(ivByte);
+        String result = null;
+        String AES = "AES";
+        String AES_CBC_PADDING = "AES/CBC/PKCS7Padding";
         try {
-            // 如果密钥不足16位，那么就补足.  这个if 中的内容很重要
-            int base = 16;
-            if (keyByte.length % base != 0) {
-                int groups = keyByte.length / base + (keyByte.length % base != 0 ? 1 : 0);
-                byte[] temp = new byte[groups * base];
-                Arrays.fill(temp, (byte) 0);
-                System.arraycopy(keyByte, 0, temp, 0, keyByte.length);
-                keyByte = temp;
-            }
-            // 初始化
-            Security.addProvider(new BouncyCastleProvider());
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            SecretKeySpec spec = new SecretKeySpec(keyByte, "AES");
-            AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
-            parameters.init(new IvParameterSpec(ivByte));
-            cipher.init(Cipher.DECRYPT_MODE, spec, parameters);// 初始化
-            byte[] resultByte = cipher.doFinal(dataByte);
-            if (null != resultByte && resultByte.length > 0) {
-                String result = new String(resultByte, "UTF-8");
-                return JSONObject.parseObject(result);
-            }
+            logger.info("start encrypt");
+            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+            KeyGenerator.getInstance(AES).init(128);
+            AlgorithmParameters params = AlgorithmParameters.getInstance(AES);
+            params.init(new IvParameterSpec(ivByte));
+            Key key = new SecretKeySpec(keyByte, AES);
+            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            cipher.init(Cipher.DECRYPT_MODE, key, params);
+            result = new String(cipher.doFinal(dataByte));
+            logger.info("end encrypt");
+            logger.info(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")

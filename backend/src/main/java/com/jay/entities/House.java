@@ -19,10 +19,11 @@ public class House {
     private Integer img_count;
     private String status;
     private String avasrc;
+    private String location;
 
     public House(){}
 
-    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String contact, String img, Integer img_count, String status, String avasrc) {
+    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String contact, String img, Integer img_count, String status, String avasrc, String location) {
         this.id = id;
         this.phone = phone;
         this.rent = rent;
@@ -41,6 +42,7 @@ public class House {
         this.img_count = img_count;
         this.status = status;
         this.avasrc = avasrc;
+        this.location = location;
     }
 
     public Integer getId() {
@@ -187,6 +189,14 @@ public class House {
         this.avasrc = avasrc;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -208,6 +218,7 @@ public class House {
                 ", \"img_count\":\"" + img_count + '\"' +
                 ", \"status\":\"" + status + '\"' +
                 ", \"avasrc\":\"" + avasrc + '\"' +
+                ", \"location\":\"" + location + '\"' +
                 '}';
     }
 }
