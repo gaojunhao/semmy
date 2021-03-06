@@ -102,11 +102,13 @@ public interface UserDao {
 
     int gethousenum(@Param("phone")String phone);
 
-    House getonehousebyphone(String phone);
+    House getonehousebyphone(@Param("phone")String phone);
 
     void addcollect(User user);
 
-    User getcollect(String phone);
+    User getcollect(@Param("phone")String phone);
 
     List<House> gethousebyid(String id_arr);
+
+    User getuser(@Param("phone")String phone);
 }

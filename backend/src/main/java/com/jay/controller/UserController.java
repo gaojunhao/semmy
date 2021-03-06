@@ -51,6 +51,17 @@ public class UserController {
         return "{" + "\"housenum\":\"" + housenum_str + "\"" + "}";
     }
 
+    @RequestMapping(value = "/checkuserbyphone", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String checkuserbyphone(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        logger.info(phone);
+        User user = service.getuser(phone);
+        if(user == null)
+            return "{" + "\"phone\":\"" + "null" + "\"" + "}";
+        return user.toString();
+    }
+
     @RequestMapping(value = "/getphone", method = {RequestMethod.POST})
     @ResponseBody
     public String getphone(@RequestBody Encrypt encrypt, HttpServletResponse response){
@@ -79,7 +90,7 @@ public class UserController {
             AlgorithmParameters params = AlgorithmParameters.getInstance(AES);
             params.init(new IvParameterSpec(ivByte));
             Key key = new SecretKeySpec(keyByte, AES);
-            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING,"BC");
             cipher.init(Cipher.DECRYPT_MODE, key, params);
             result = new String(cipher.doFinal(dataByte));
             logger.info("end encrypt");
@@ -93,25 +104,16 @@ public class UserController {
     @RequestMapping(value = "/getAllhouses", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getAllhouses(HttpServletRequest request, HttpServletResponse response) {
-        logger.info("###getAllhouses###");
         int itemcnt_start = Integer.parseInt(request.getParameter("itemcnt"));
-        logger.info("before quyu");
         String quyu = request.getParameter("quyu");
-        logger.info(quyu);
-        logger.info("after quyu");
         String ditie = request.getParameter("ditie");
-        logger.info(ditie);
         String fangjiantype = request.getParameter("fangjiantype");
-        logger.info(fangjiantype);
         String zulintype = request.getParameter("zulintype");
-        logger.info(zulintype);
         int itemcnt_end = 5;
         int price = -1;
-        logger.info("before rent");
         String rent_str = request.getParameter("rent");
         if (rent_str != null) {
             int rent = Integer.parseInt(request.getParameter("rent"));
-            logger.info("after rent");
             if (rent == 1) {
                 price = 0;
             } else if (rent == 2) {
@@ -132,7 +134,6 @@ public class UserController {
                 price = -1;
             }
         }
-        logger.info(price);
         List<House> houses = service.getAllHouses(itemcnt_start, itemcnt_end, quyu, ditie, fangjiantype, zulintype, price);
         return houses.toString();
     }
@@ -149,8 +150,6 @@ public class UserController {
     @ResponseBody
     public String gethousebyid(HttpServletRequest request, HttpServletResponse response) {
         String id_arr = request.getParameter("id");
-        logger.info("##gethousebyid");
-        logger.info(id_arr);
         List<House> houses = service.gethousebyid(id_arr);
         logger.info(houses.size());
         return houses.toString();

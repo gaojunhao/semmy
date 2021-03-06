@@ -20,10 +20,11 @@ public class House {
     private String status;
     private String avasrc;
     private String location;
+    private Integer houseindex;
 
     public House(){}
 
-    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String contact, String img, Integer img_count, String status, String avasrc, String location) {
+    public House(Integer id, String phone, Integer rent, String zulintype, String quyu, String ditie, String xiaoqu, Integer louceng, String fangjiantype, String dianti, Integer fangjiandaxiao, String sex, String fukuantype, String contact, String img, Integer img_count, String status, String avasrc, String location, Integer houseindex) {
         this.id = id;
         this.phone = phone;
         this.rent = rent;
@@ -43,6 +44,7 @@ public class House {
         this.status = status;
         this.avasrc = avasrc;
         this.location = location;
+        this.houseindex = houseindex;
     }
 
     public Integer getId() {
@@ -197,6 +199,14 @@ public class House {
         this.location = location;
     }
 
+    public Integer getHouseindex() {
+        return houseindex;
+    }
+
+    public void setHouseindex(Integer houseindex) {
+        this.houseindex = houseindex;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -219,6 +229,7 @@ public class House {
                 ", \"status\":\"" + status + '\"' +
                 ", \"avasrc\":\"" + avasrc + '\"' +
                 ", \"location\":\"" + location + '\"' +
+                ", \"houseindex\":\"" + houseindex + '\"' +
                 '}';
     }
 }
