@@ -41,4 +41,6 @@ public interface UserService {
     List<House> gethousebyid(String id_arr);
 
     User getuser(String phone);
+
+    House gethouseid(String poster);
 }

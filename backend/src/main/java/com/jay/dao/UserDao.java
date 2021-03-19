@@ -111,4 +111,6 @@ public interface UserDao {
     List<House> gethousebyid(String id_arr);
 
     User getuser(@Param("phone")String phone);
+
+    House gethouseid(@Param("poster")String poster);
 }

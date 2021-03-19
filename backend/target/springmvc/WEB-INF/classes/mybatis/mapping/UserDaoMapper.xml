@@ -16,6 +16,9 @@
     <select id="gethousebyid" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc, location, houseindex, poster from houses where id in (${_parameter})
     </select>
+    <select id="gethouseid" resultType="House">
+        select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc, location, houseindex, poster from houses where poster = #{poster}
+    </select>
     <select id="getonehousebyphone" resultType="House">
         select id, phone, rent, zulintype, quyu, ditie, xiaoqu, louceng, fangjiantype, dianti, fangjiandaxiao, sex, fukuantype, contact, img, img_count, status, avasrc, location, houseindex, poster from houses where phone = #{phone}
     </select>

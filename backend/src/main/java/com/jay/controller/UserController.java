@@ -6,7 +6,6 @@ import com.jay.entities.Tip;
 import com.jay.entities.User;
 import com.jay.service.UserService;
 import org.apache.log4j.Logger;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.*;
 
-import com.alibaba.fastjson.JSONObject;
 import java.util.*;
 
 import org.apache.commons.codec.binary.Base64;
@@ -190,6 +188,24 @@ public class UserController {
         List<House> houses = service.gethousebyid(id_arr);
         logger.info(houses.size());
         return houses.toString();
+    }
+
+    @RequestMapping(value = "/gethouseid", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String gethouseid(HttpServletRequest request, HttpServletResponse response) {
+        String poster = request.getParameter("poster");
+        House house = service.gethouseid(poster);
+        return house.toString();
+    }
+
+    @RequestMapping(value = "/getsessdata", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getsessdata(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String code = request.getParameter("code");
+        String url="https://api.weixin.qq.com/sns/jscode2session?appid=wxdf33872822175f36&secret=8a13ec90b1fd2048188bfdbd37fe7004&js_code="+ code + "&grant_type=authorization_code";
+        String sess = HttpUtil.get(url);
+        logger.info(sess);
+        return sess;
     }
 
     @RequestMapping(value = "/getonehousebyphone", produces = "text/html;charset=UTF-8")
